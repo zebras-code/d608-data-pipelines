@@ -4,7 +4,7 @@ This project is part of the WGU D608 course. It demonstrates a complete ETL pipe
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 dags/
@@ -22,7 +22,7 @@ helpers/
 
 ---
 
-## ⚙️ Technologies Used
+##  Technologies Used
 - Apache Airflow
 - Amazon Redshift
 - Amazon S3
@@ -31,7 +31,7 @@ helpers/
 
 ---
 
-## 🔁 Workflow Steps
+##  Workflow Steps
 
 1. `Begin_execution` – Starts the DAG
 2. `Stage_events`, `Stage_songs` – Loads raw JSON from S3 to Redshift
@@ -40,51 +40,16 @@ helpers/
 5. `Run_data_quality_checks` – Verifies row counts in key tables
 6. `Stop_execution` – Ends the DAG
 
----
 
-## 🔌 Airflow Connections
 
-Ensure the following Airflow connections are configured:
 
-| ID               | Type         | Notes                        |
-|------------------|--------------|-------------------------------|
-| `aws_credentials` | Amazon Web Services | For accessing S3              |
-| `redshift`        | Postgres     | Points to your Redshift cluster |
 
-Also set this **Airflow Variable**:
-```bash
-s3_bucket = zainab-dend-buckets
-```
-
----
-
-## 🧪 Data Quality Checks
-The DAG includes a custom operator that runs SQL checks such as:
-```sql
-SELECT COUNT(*) FROM users
-SELECT COUNT(*) FROM songs
-```
-If results do not match expected values, the DAG will fail.
-
----
-
-## 📄 Example SQL Logic
-
-SQL logic is stored in `sql_queries.py`:
-```sql
-SELECT DISTINCT userid, firstname, lastname FROM staging_events WHERE page='NextSong';
-```
-
----
-
-## ✅ Rubric Coverage
+## Rubric Coverage
 - [x] Custom operators with parameters
 - [x] Dynamic S3 → Redshift COPY logic
 - [x] Configurable truncate vs append mode
 - [x] Data quality tests with error handling
 - [x] Fully defined DAG with dependencies
-
----
 
 ## Author
 Zainab Abbas  
